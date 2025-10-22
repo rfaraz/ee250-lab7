@@ -1,5 +1,7 @@
 import RPi.GPIO as GPIO
 import time
+import datetime as dt
+import mcp3008
 
 # set mode as GPIO numbers instead of physical pin numbers
 GPIO.setmode(GPIO.BCM)
@@ -14,6 +16,22 @@ def blink_led(led_gpio=17, blinks=5, interval=0.5):
         GPIO.output(led_gpio, GPIO.LOW)
         time.sleep(interval)
 
+def read_light(channel=mcp3008.CH0, interval=0.1, duration=5):
+    adc = mcp3008.MCP3008()
+    num_readings = int(duration / interval)
+    threshold = 100
+
+    for r in range(num_readings):
+        raw_val = adc.read([channel])
+        print("Raw value:", raw_val)
+        if raw_val < threshold:
+            print("Dark")
+        else:
+            print("Light")
+        time.sleep(interval)
+
+    adc.close()
+
 
 def main():
     # led setup
@@ -22,6 +40,9 @@ def main():
 
     # first blink
     blink_led()
+
+    # read output of light sensor
+    read_light()
 
     # second blink 
     blink_led(blinks=4, interval=0.2)
