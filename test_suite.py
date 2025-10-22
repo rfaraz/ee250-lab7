@@ -1,0 +1,18 @@
+import RPi.GPIO as GPIO
+import time
+
+GPIO.setmod(GPIO.BCM)
+
+def blink_led(led_gpio=17, blinks=5, interval=0.5):
+    for b in range(blinks):
+        GPIO.output(led_gpio, GPIO.HIGH)
+        time.sleep(interval)
+        GPIO.output(led_gpio, GPIO.LOW)
+
+def main():
+    led_gpio = 17
+    GPIO.setup(led_gpio, GPIO.OUT)
+    blink_led()
+
+if __name__ == '__main__':
+    main()
