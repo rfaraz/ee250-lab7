@@ -35,8 +35,11 @@ def read_sound(channel=mcp3008.CH1, interval=0.1, duration=5):
     threshold = 20 # Tested threshold
 
     for r in range(num_readings):
+        GPIO.output(17, GPIO.LOW)
         raw_val = adc.read([channel])
         print("Raw value:", raw_val)
+        if raw_val[0] < threshold:
+            GPIO.output(17, GPIO.HIGH)
         time.sleep(interval)
 
     adc.close()
