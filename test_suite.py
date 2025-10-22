@@ -13,6 +13,7 @@ def main():
     led_gpio = 17
     GPIO.setup(led_gpio, GPIO.OUT)
     blink_led()
+    GPIO.cleanup()
 
 if __name__ == '__main__':
     main()
