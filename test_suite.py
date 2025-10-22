@@ -5,6 +5,7 @@ GPIO.setmode(GPIO.BCM)
 
 def blink_led(led_gpio=17, blinks=5, interval=0.5):
     for b in range(blinks):
+        print(f"Blink {b + 1}")
         GPIO.output(led_gpio, GPIO.HIGH)
         time.sleep(interval)
         GPIO.output(led_gpio, GPIO.LOW)
