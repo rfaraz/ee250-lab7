@@ -9,6 +9,8 @@ def blink_led(led_gpio=17, blinks=5, interval=0.5):
         GPIO.output(led_gpio, GPIO.HIGH)
         time.sleep(interval)
         GPIO.output(led_gpio, GPIO.LOW)
+        time.sleep(interval)
+
 
 def main():
     led_gpio = 17
