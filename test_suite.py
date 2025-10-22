@@ -19,7 +19,7 @@ def blink_led(led_gpio=17, blinks=5, interval=0.5):
 def read_light(channel=mcp3008.CH0, interval=0.1, duration=5):
     adc = mcp3008.MCP3008()
     num_readings = int(duration / interval)
-    threshold = 20
+    threshold = 20 # Tested threshold
 
     for r in range(num_readings):
         raw_val = adc.read([channel])
@@ -29,6 +29,17 @@ def read_light(channel=mcp3008.CH0, interval=0.1, duration=5):
 
     adc.close()
 
+def read_sound(channel=mcp3008.CH1, interval=0.1, duration=5):
+    adc = mcp3008.MCP3008()
+    num_readings = int(duration / interval)
+    threshold = 20 # Tested threshold
+
+    for r in range(num_readings):
+        raw_val = adc.read([channel])
+        print("Raw value:", raw_val)
+        time.sleep(interval)
+
+    adc.close()
 
 def main():
     # led setup
