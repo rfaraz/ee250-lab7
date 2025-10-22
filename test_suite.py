@@ -55,6 +55,9 @@ def main():
     # second blink 
     blink_led(blinks=4, interval=0.2)
 
+    # read output of sound sensor
+    read_sound()
+
     # cleanup pin assignments
     GPIO.cleanup()
 
