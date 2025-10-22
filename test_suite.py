@@ -1,7 +1,7 @@
 import RPi.GPIO as GPIO
 import time
 
-GPIO.setmod(GPIO.BCM)
+GPIO.setmode(GPIO.BCM)
 
 def blink_led(led_gpio=17, blinks=5, interval=0.5):
     for b in range(blinks):
