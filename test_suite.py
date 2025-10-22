@@ -24,10 +24,7 @@ def read_light(channel=mcp3008.CH0, interval=0.1, duration=5):
     for r in range(num_readings):
         raw_val = adc.read([channel])
         print("Raw value:", raw_val)
-        if raw_val[0] < threshold:
-            print("Dark")
-        else:
-            print("Light")
+        print("Dark\n") if raw_val[0] < threshold else print("Light\n")
         time.sleep(interval)
 
     adc.close()
